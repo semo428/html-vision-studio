@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,19 +18,25 @@ export const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#services", label: "Services" },
-    { href: "#benefits", label: "Benefits" },
-    { href: "#process", label: "Ablauf" },
-    { href: "#about", label: "Über uns" },
-    { href: "#faq", label: "FAQ" },
-    { href: "#contact", label: "Kontakt" },
+    { href: "/", label: "Home" },
+    { href: "/services", label: "Services & Benefits" },
+    { href: "/faq", label: "FAQ" },
   ];
 
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
+    
+    // If it's an anchor link on current page, scroll to element
+    if (href.startsWith("#")) {
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const isActiveRoute = (href: string) => {
+    if (href === "/" && location.pathname === "/") return true;
+    if (href !== "/" && location.pathname.startsWith(href)) return true;
+    return false;
   };
 
   return (
@@ -43,28 +51,46 @@ export const Navigation = () => {
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="text-2xl font-bold gradient-text">
+            <Link to="/" className="text-xl md:text-2xl font-bold gradient-text">
               ASK CONNECT
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex space-x-8">
+            <ul className="hidden md:flex space-x-6 lg:space-x-8">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <button
+                  <Link
+                    to={link.href}
                     onClick={() => handleNavClick(link.href)}
-                    className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
+                    className={`transition-colors duration-300 font-medium px-3 py-2 rounded-lg ${
+                      isActiveRoute(link.href)
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                    }`}
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
 
-            {/* Logo Placeholder (if needed) */}
-            <div className="hidden md:block w-24 h-12 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
-              <span className="text-xs text-primary/70">LOGO</span>
-            </div>
+            {/* Contact Button - only show on non-home pages or scroll to contact on home */}
+            {location.pathname === "/" ? (
+              <Button
+                variant="glassmorphism"
+                size="sm"
+                className="hidden md:flex"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Kontakt
+              </Button>
+            ) : (
+              <Link to="/#contact">
+                <Button variant="glassmorphism" size="sm" className="hidden md:flex">
+                  Kontakt
+                </Button>
+              </Link>
+            )}
 
             {/* Mobile Menu Button */}
             <Button
@@ -99,14 +125,47 @@ export const Navigation = () => {
             <ul className="space-y-4">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <button
+                  <Link
+                    to={link.href}
                     onClick={() => handleNavClick(link.href)}
-                    className="block w-full text-left text-foreground/80 hover:text-primary transition-colors duration-300 font-medium py-2"
+                    className={`block w-full text-left transition-colors duration-300 font-medium py-3 px-4 rounded-lg ${
+                      isActiveRoute(link.href)
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                    }`}
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
+              <li className="pt-4">
+                {location.pathname === "/" ? (
+                  <Button
+                    variant="gradient"
+                    size="sm"
+                    className="w-full"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setTimeout(() => {
+                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                      }, 300);
+                    }}
+                  >
+                    Kontakt
+                  </Button>
+                ) : (
+                  <Link to="/#contact" className="block w-full">
+                    <Button 
+                      variant="gradient" 
+                      size="sm" 
+                      className="w-full"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Kontakt
+                    </Button>
+                  </Link>
+                )}
+              </li>
             </ul>
           </div>
         </div>
