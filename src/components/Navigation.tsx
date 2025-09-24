@@ -19,7 +19,7 @@ export const Navigation = () => {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Services & Benefits" },
+    { href: "/services", label: "Services, Benefits & Ablauf" },
     { href: "/faq", label: "FAQ" },
   ];
 
@@ -51,8 +51,11 @@ export const Navigation = () => {
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="text-xl md:text-2xl font-bold gradient-text">
-              ASK CONNECT
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                <span className="text-white font-bold text-lg md:text-xl">A</span>
+              </div>
+              <span className="text-xl md:text-2xl font-bold gradient-text">ASK CONNECT</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -119,8 +122,11 @@ export const Navigation = () => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-6">
-            <div className="text-xl font-bold gradient-text mb-8">
-              ASK CONNECT
+            <div className="flex items-center space-x-3 mb-8">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                <span className="text-white font-bold text-lg">A</span>
+              </div>
+              <span className="text-xl font-bold gradient-text">ASK CONNECT</span>
             </div>
             <ul className="space-y-4">
               {navLinks.map((link) => (

@@ -126,7 +126,7 @@ const FAQ = () => {
         {/* Hero Section */}
         <section className="min-h-[60vh] flex items-center justify-center relative pt-20 px-4">
           <div className="container mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text leading-tight px-4">
               Häufige Fragen (FAQ)
             </h1>
             

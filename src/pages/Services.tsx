@@ -138,8 +138,8 @@ const Services = () => {
         {/* Hero Section */}
         <section className="min-h-[60vh] flex items-center justify-center relative pt-20 px-4">
           <div className="container mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
-              Unsere Services & Vorteile
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text leading-tight px-4">
+              Services, Benefits & Ablauf
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
@@ -232,32 +232,71 @@ const Services = () => {
               </p>
             </div>
             
-            <div className="max-w-4xl mx-auto">
-              {processSteps.map((step, index) => (
-                <div key={index} className="flex flex-col md:flex-row items-start mb-8 md:mb-12 group">
-                  <div 
-                    className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg mr-0 md:mr-6 mb-4 md:mb-0 group-hover:scale-110 transition-transform duration-300 mx-auto md:mx-0"
-                    style={{ background: "var(--gradient-primary)" }}
-                  >
-                    {step.number}
+            <div className="max-w-6xl mx-auto">
+              <div className="relative">
+                {/* Connection line for desktop */}
+                <div className="hidden md:block absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent opacity-30"></div>
+                
+                {processSteps.map((step, index) => (
+                  <div key={index} className="relative flex flex-col md:flex-row items-start mb-12 md:mb-16 group">
+                    {/* Step number with enhanced styling */}
+                    <div className="relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-white font-bold text-lg md:text-xl mr-0 md:mr-8 mb-6 md:mb-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 mx-auto md:mx-0 shadow-2xl"
+                         style={{ 
+                           background: index % 2 === 0 
+                             ? "var(--gradient-primary)" 
+                             : "var(--gradient-secondary)" 
+                         }}>
+                      {step.number}
+                      {/* Glow effect */}
+                      <div className="absolute inset-0 rounded-2xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"
+                           style={{ 
+                             background: index % 2 === 0 
+                               ? "var(--gradient-primary)" 
+                               : "var(--gradient-secondary)",
+                             filter: "blur(8px)",
+                             zIndex: -1
+                           }}></div>
+                    </div>
+                    
+                    {/* Content card */}
+                    <div className="flex-1 bg-card/40 backdrop-blur-sm border border-primary/20 rounded-2xl p-6 md:p-8 group-hover:border-primary/40 group-hover:shadow-xl group-hover:shadow-primary/10 transition-all duration-500 glow-on-hover">
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 text-center md:text-left">
+                        <span className="gradient-text">{step.title}</span>
+                      </h3>
+                      
+                      {/* Visual separator */}
+                      <div className="w-16 h-1 mx-auto md:mx-0 mb-4 rounded-full" 
+                           style={{ background: "var(--gradient-accent)" }}></div>
+                      
+                      <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-center md:text-left">
+                        {step.description.split(step.highlight).map((part, i, arr) => (
+                          <span key={i}>
+                            {part}
+                            {i < arr.length - 1 && (
+                              <span className="text-primary font-semibold bg-primary/10 px-2 py-1 rounded">
+                                {step.highlight}
+                              </span>
+                            )}
+                          </span>
+                        ))}
+                      </p>
+                      
+                      {/* Step completion indicator */}
+                      <div className="flex justify-center md:justify-start mt-6">
+                        <div className="flex items-center space-x-2">
+                          {[...Array(3)].map((_, i) => (
+                            <div key={i} 
+                                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                   i <= index % 3 ? 'bg-primary' : 'bg-primary/20'
+                                 }`}>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex-1 text-center md:text-left">
-                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm md:text-base text-muted-foreground">
-                      {step.description.split(step.highlight).map((part, i, arr) => (
-                        <span key={i}>
-                          {part}
-                          {i < arr.length - 1 && (
-                            <span className="text-primary font-semibold">{step.highlight}</span>
-                          )}
-                        </span>
-                      ))}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>

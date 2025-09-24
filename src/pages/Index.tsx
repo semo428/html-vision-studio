@@ -74,7 +74,7 @@ const Index = () => {
           <div className="container mx-auto text-center">
             <AIBot />
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text leading-tight px-4">
               KI-Agenten der Zukunft
             </h1>
             
@@ -88,7 +88,7 @@ const Index = () => {
                 variant="hero" 
                 size="xl"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="animate-pulse-glow min-w-48"
+                className="animate-pulse-glow-slow min-w-48"
               >
                 Jetzt starten
               </Button>
@@ -304,9 +304,6 @@ const Index = () => {
           
           <Separator className="my-8 bg-primary/20" />
           
-          <div className="text-center text-sm text-muted-foreground">
-            <p>Datenschutz | Impressum | AGB</p>
-          </div>
         </div>
       </footer>
 

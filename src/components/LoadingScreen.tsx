@@ -9,12 +9,12 @@ export const LoadingScreen = () => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(() => setIsVisible(false), 500);
+          setTimeout(() => setIsVisible(false), 250);
           return 100;
         }
-        return prev + Math.random() * 15;
+        return prev + Math.random() * 25;
       });
-    }, 200);
+    }, 100);
 
     return () => clearInterval(timer);
   }, []);
