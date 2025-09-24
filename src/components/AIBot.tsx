@@ -44,11 +44,11 @@ export const AIBot = () => {
 
         {/* Arms */}
         <div className="absolute -left-3 top-2 w-2 h-8 bg-primary/60 rounded-full" />
-        <div className="absolute -right-3 top-2 w-2 h-8 bg-primary/60 rounded-full" />
+        <div className="absolute -right-3 top-2 w-2 h-8 bg-primary/60 rounded-full animate-robot-wave origin-bottom" />
         
         {/* Hands */}
         <div className="absolute -left-4 top-8 w-3 h-3 bg-primary/80 rounded-full animate-pulse" />
-        <div className="absolute -right-4 top-8 w-3 h-3 bg-primary/80 rounded-full animate-pulse" />
+        <div className="absolute -right-4 top-8 w-3 h-3 bg-primary/80 rounded-full animate-pulse animate-robot-wave origin-bottom" />
       </div>
 
       {/* Glow Effect */}

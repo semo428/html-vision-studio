@@ -90,12 +90,14 @@ export default {
         },
         "pulse-glow-slow": {
           "0%, 100%": {
-            opacity: "0.7",
+            opacity: "0.8",
             transform: "scale(1)",
+            boxShadow: "0 0 10px hsl(var(--primary) / 0.3)"
           },
           "50%": {
-            opacity: "0.9",
-            transform: "scale(1.02)",
+            opacity: "0.95",
+            transform: "scale(1.01)",
+            boxShadow: "0 0 15px hsl(var(--primary) / 0.4)"
           },
         },
         "bot-float": {
@@ -114,15 +116,33 @@ export default {
             transform: "scaleY(0.1)",
           },
         },
+        "robot-wave": {
+          "0%, 85%, 100%": {
+            transform: "rotate(0deg)",
+          },
+          "87%": {
+            transform: "rotate(15deg)",
+          },
+          "89%": {
+            transform: "rotate(-10deg)",
+          },
+          "91%": {
+            transform: "rotate(15deg)",
+          },
+          "93%": {
+            transform: "rotate(0deg)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "float": "float 6s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "pulse-glow-slow": "pulse-glow-slow 4s ease-in-out infinite",
+        "pulse-glow-slow": "pulse-glow-slow 8s ease-in-out infinite",
         "bot-float": "bot-float 3s ease-in-out infinite",
         "eye-blink": "eye-blink 4s ease-in-out infinite",
+        "robot-wave": "robot-wave 12s ease-in-out infinite",
       },
     },
   },

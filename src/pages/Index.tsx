@@ -74,7 +74,7 @@ const Index = () => {
           <div className="container mx-auto text-center">
             <AIBot />
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text leading-tight px-4">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text leading-relaxed px-4 py-2">
               KI-Agenten der Zukunft
             </h1>
             
